@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Plus for Sporting Services</title>
+    <link rel="icon" type="image/png" href="photos/logo100.png">
+    <meta name="description" content="أكاديمية أكوا بلس للخدمات الرياضية - تدريب السباحة الاحترافي في دمياط">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aqua-primary': '#0077B6',
+                        'aqua-secondary': '#00B4D8',
+                        'aqua-light': '#90E0EF',
+                        'aqua-dark': '#023E8A',
+                        'green-accent': '#2D6A4F',
+                        'green-light': '#40916C',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg: #F8FFFE;
+            --fg: #023E8A;
+            --muted: #5A7A9A;
+            --accent: #00B4D8;
+            --card: #FFFFFF;
+            --border: #E0F2F1;
+            --green-accent: #2D6A4F;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #0077B6, #00B4D8);
+            border-radius: 5px;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #0077B6 0%, #00B4D8 50%, #90E0EF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            animation: wave 8s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+        }
+        
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 7s; animation-delay: 2s; }
+        .bubble:nth-child(4) { width: 80px; height: 80px; left: 50%; animation-duration: 11s; animation-delay: 0s; }
+        .bubble:nth-child(5) { width: 35px; height: 35px; left: 55%; animation-duration: 6s; animation-delay: 1s; }
+        .bubble:nth-child(6) { width: 45px; height: 45px; left: 65%; animation-duration: 8s; animation-delay: 3s; }
+        .bubble:nth-child(7) { width: 25px; height: 25px; left: 80%; animation-duration: 7s; animation-delay: 2s; }
+        .bubble:nth-child(8) { width: 60px; height: 60px; left: 90%; animation-duration: 9s; animation-delay: 1s; }
+        
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+        }
+        
+        .navbar {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 119, 182, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 40px rgba(0, 119, 182, 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--fg);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0077B6, #00B4D8);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #0077B6;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .feature-card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 119, 182, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 180, 216, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0077B6, #00B4D8, #2D6A4F);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 119, 182, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0077B6, #00B4D8);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 118, 182, 0.658);
+        }
+        
+        .btn-green {
+            background: linear-gradient(135deg, #2D6A4F, #40916C);
+        }
+        
+        .btn-green:hover {
+            box-shadow: 0 10px 30px rgba(45, 106, 79, 0.3);
+        }
+        
+        .video-container {
+            background: linear-gradient(135deg, #0077B6 0%, #023E8A 100%);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-placeholder:hover .play-btn {
+            transform: scale(1.1);
+        }
+        
+        .play-btn {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0077B6, #00B4D8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .booking-card {
+            background: linear-gradient(135deg, rgba(0, 119, 182, 0.05), rgba(0, 180, 216, 0.05));
+            border: 2px dashed #00B4D8;
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-card:hover {
+            border-style: solid;
+            background: linear-gradient(135deg, rgba(0, 119, 182, 0.08), rgba(0, 180, 216, 0.08));
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.6); }
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #023E8A, #0077B6);
+            color: white;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        .pool-image {
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 119, 182, 0.2);
+            transition: transform 0.5s ease;
+        }
+        
+        .pool-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .gallery-item {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3">
+                    <img src="photos/logo100.png" 
+                        alt="Aqua Plus Logo" 
+                        class="logo-img">
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link">الرئيسية</a>
+                    <a href="#about" class="nav-link">من نحن</a>
+                    <a href="#video" class="nav-link">الفيديو التعريفى</a>
+                    <a href="#features" class="nav-link">مميزاتنا</a>
+                    <a href="#gallery" class="nav-link">المعرض</a>
+                    <a href="#booking" class="nav-link">الحجز</a>
+                    <a href="#contact" class="nav-link">تواصل معنا</a>
+                </div>
+                                <div class="hidden md:block">
+                    <a href="https://wa.me/201551077100" target="_blank" class="btn-primary text-sm">
+                        احجز الآن
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="فتح القائمة">
+                    <svg class="w-6 h-6 text-aqua-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl md:hidden z-50" id="mobileMenu">
+            <div class="p-6">
+                <button class="mb-8 p-2 rounded-lg hover:bg-gray-100" id="closeMenuBtn" aria-label="إغلاق القائمة">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="flex flex-col gap-4">
+                    <a href="#home" class="nav-link text-lg py-2">الرئيسية</a>
+                    <a href="#about" class="nav-link text-lg py-2">من نحن</a>
+                    <a href="#video" class="nav-link text-lg py-2">الفيديو التوضيحي</a>
+                    <a href="#features" class="nav-link text-lg py-2">مميزاتنا</a>
+                    <a href="#gallery" class="nav-link text-lg py-2">المعرض</a>
+                    <a href="#booking" class="nav-link text-lg py-2">الحجز</a>
+                    <a href="#contact" class="nav-link text-lg py-2">تواصل معنا</a>
+                    <a href="https://wa.me/201551077100" target="_blank" class="btn-primary text-center mt-4">
+                        احجز الآن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white reveal">
+                    <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                        أكاديمية متخصصة في تدريب السباحة
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        أكوا بلس
+                        <span class="block text-aqua-light">للخدمات الرياضية</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
+                        حيث تلتقي الاحترافية بالمتعة. نقدم برامج تدريب سباحة متكاملة لجميع الأعمار والمستويات، 
+                        بأيدي نخبة من المدربين المحترفين في حمام سباحة نصف أوليمبي بمعايير عالمية.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#booking" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-aqua-dark font-bold rounded-full transition-all duration-300 hover:bg-white/90 hover:scale-105 hover:shadow-xl">
+                            احجز معنا الآن
+                        </a>
+                        <a href="#about" class="btn-primary bg-transparent border-2 border-white hover:bg-white/10">
+                            تعرف علينا
+                        </a>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <div class="relative">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -left-10 w-60 h-60 bg-green-accent/20 rounded-full blur-3xl"></div>
+                        
+                        <img src="photos/4.jpeg" 
+                            alt="حمام السباحة - Aqua Plus" 
+                                class="pool-image w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="inline-block px-4 py-2 bg-aqua-primary/10 rounded-full text-aqua-primary text-sm font-semibold mb-6">
+                        من نحن
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-6">
+                        نبذة عن أكاديمية
+                        <span class="text-aqua-secondary">أكوا بلس</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        في قلب مدينة دمياط، تأسست أكاديمية أكوا بلس للخدمات الرياضية لتكون وجهتك المثالية لتعلم السباحة. 
+                        نحن نؤمن بأن السباحة ليست مجرد رياضة، بل هي مهارة حياتية أساسية ونشاط ممتع يجمع بين الصحة والترفيه.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        يضم فريقنا نخبة من المدربين المحترفين المعتمدين ، والذين يتمتعون بخبرة واسعة في تدريب السباحة للمبتدئين والمحترفين. 
+                        نستخدم أحدث الأساليب والتقنيات التدريبية لضمان تحقيق أفضل النتائج في أجواء آمنة ومحفزة.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-green-accent/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-aqua-dark">مدربون معتمدون</h4>
+                                <p class="text-sm text-gray-500">فريق مدربين محترف ومعتمد </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-aqua-primary/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-aqua-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-aqua-dark">مواعيد مرنة</h4>
+                                <p class="text-sm text-gray-500">جداول تناسب جميع الأوقات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-aqua-primary/20 to-green-accent/20 rounded-3xl transform rotate-3"></div>
+                        <div class="relative bg-gradient-to-br from-aqua-light/30 to-aqua-secondary/30 rounded-3xl p-8 backdrop-blur-sm">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-4">
+                                    <div class="stat-number" data-target="1000">0</div>
+                                    <p class="text-gray-600 font-medium">متدرب سنوياً</p>
+                                </div>
+                                <div class="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-4">
+                                    <div class="stat-number" data-target="10">0</div>
+                                    <p class="text-gray-600 font-medium">سنوات خبرة</p>
+                                </div>
+                                <div class="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-4">
+                                    <div class="stat-number" data-target="15">0</div>
+                                    <p class="text-gray-600 font-medium">مدرب محترف</p>
+                                </div>
+                                <div class="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-4">
+                                    <div class="stat-number" data-target="98">0</div>
+                                    <p class="text-gray-600 font-medium">% رضا العملاء</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Section -->
+    <section id="video" class="py-20 lg:py-32 bg-gradient-to-b from-white to-aqua-primary/5">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="inline-block px-4 py-2 bg-aqua-primary/10 rounded-full text-aqua-primary text-sm font-semibold mb-6">
+                    شاهد الفيديو التعريفي
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-4">
+                    تعرف على الأكاديمية عن قرب
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    شاهد فيديو تعريفي يوضح مرافقنا وخدماتنا وبرامجنا التدريبية المميزة
+                </p>
+            </div>
+            
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <div class="video-container" id="videoContainer">
+                    <div class="video-placeholder" id="videoPlaceholder">
+                        <div class="play-btn">
+                            <svg class="w-10 h-10 text-aqua-primary mr-[-4px]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <video id="promoVideo" class="w-full h-full object-cover hidden" controls>
+                        <source src="" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو
+                    </video>
+                </div>
+                <p class="text-center text-gray-500 mt-4 text-sm">
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section id="features" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-green-accent/10 rounded-full text-green-accent text-sm font-semibold mb-6">
+                    لماذا تختارنا
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-4">
+                    مميزات تجعلنا الخيار الأفضل
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    نقدم لك تجربة سباحة متكاملة تجمع بين الاحترافية والمتعة في بيئة آمنة ومحفزة
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card reveal">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-aqua-primary to-aqua-secondary flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">حمام سباحة نصف أوليمبي</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        مسبح بمعايير أوليمبية مع أنظمة تنقية متطورة ومياه نظيفة على مدار الساعة
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-accent to-green-light flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">مدربون محترفون</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        نخبة من المدربين المعتمدين بخبرة تتجاوز 10 سنوات في تدريب السباحة
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-aqua-secondary to-aqua-light flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">بيئة آمنة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        إجراءات سلامة صارمة وتأمين شامل
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card reveal" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-aqua-primary to-green-accent flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">برامج متنوعة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        برامج تدريبية لجميع الأعمار والمستويات من الأطفال وحتى المحترفين
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card reveal" style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-aqua-secondary to-aqua-primary flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">مجموعات صغيرة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        تدريب في مجموعات صغيرة لضمان اهتمام فردي بكل متدرب وتحقيق أفضل النتائج
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card reveal" style="transition-delay: 0.5s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-light to-aqua-light flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-aqua-dark mb-3">أسعار مناسبة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        باقات متنوعة بأسعار تنافسية مع عروض خاصة للاخوة و العائلة
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 lg:py-32 bg-gradient-to-b from-aqua-primary/5 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-aqua-primary/10 rounded-full text-aqua-primary text-sm font-semibold mb-6">
+                    معرض الصور
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-4">
+                    تعرف على المكان
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    حمام سباحة نصف أوليمبي بمعايير عالمية مجهز بأحدث التجهيزات
+                </p>
+            </div>
+            
+            <div class="gallery-grid reveal">
+                <div class="gallery-item">
+                    <img src="photos/1.jpeg" alt="حمام السباحة">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/2.jpeg" alt=" حمام السباحة">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/3.jpeg" alt="حمام السباحة">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/4.jpeg" alt=" حمام السباحة ">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/5.jpeg" alt="حمام السباحة">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/6.jpeg" alt="حمام السباحة">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 lg:py-32 bg-gradient-to-b from-white to-green-accent/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-aqua-primary/10 rounded-full text-aqua-primary text-sm font-semibold mb-6">
+                    احجز الآن
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-4">
+                    كيفية الحجز
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    اختر الطريقة المناسبة لك للحجز أو الاشتراك في برامجنا
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Visit Us -->
+                <div class="booking-card reveal">
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-aqua-primary to-aqua-secondary flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-aqua-dark mb-4">زرنا في المكان</h3>
+                        <p class="text-gray-600 mb-6">
+                            يمكنك زيارة الأكاديمية مباشرة والتعرف على انظمتنا و الاشتراك في البرنامج المناسب لك
+                        </p>
+                        <div class="bg-white rounded-xl p-4 mb-4">
+                            <p class="text-sm text-gray-500 mb-2">العنوان</p>
+                            <p class="font-semibold text-aqua-dark">دمياط - خلف مول الصفوة - الساحة الشعبية</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-4">
+                            <p class="text-sm text-gray-500 mb-2">أوقات العمل</p>
+                            <p class="font-semibold text-aqua-dark">طوال الاسبوع : 10 صباحاً - 9 مساءً</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Booking -->
+                <div class="booking-card reveal" style="transition-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-green-accent to-green-light flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-aqua-dark mb-4">تواصل عبر واتساب</h3>
+                        <p class="text-gray-600 mb-6">
+                            احجز مكانك بسهولة عبر الواتساب وسنرد عليك في أقرب وقت ممكن
+                        </p>
+                        <div class="bg-white rounded-xl p-4 mb-6">
+                            <p class="text-sm text-gray-500 mb-2">رقم الهاتف</p>
+                            <p class="font-semibold text-aqua-dark text-lg" dir="ltr">01551077100</p>
+                        </div>
+                        <a href="https://wa.me/201551077100" target="_blank" 
+                            class="btn-primary btn-green inline-flex items-center gap-3">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            راسلنا على واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-2 bg-green-accent/10 rounded-full text-green-accent text-sm font-semibold mb-6">
+                    تواصل معنا
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-aqua-dark mb-4">
+                    نحن هنا لمساعدتك
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    لا تتردد في التواصل معنا لأي استفسار أو لمزيد من المعلومات
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Phone -->
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 rounded-full bg-aqua-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-aqua-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-aqua-dark mb-2">اتصل بنا</h4>
+                    <p class="text-gray-600" dir="ltr">01551077100</p>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="text-center reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-full bg-green-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-aqua-dark mb-2">واتساب</h4>
+                    <a href="https://wa.me/201551077100" target="_blank" class="text-green-accent hover:underline">راسلنا الآن</a>
+                </div>
+                
+                <!-- Location -->
+                <div class="text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-full bg-aqua-secondary/10 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-aqua-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-aqua-dark mb-2">الموقع</h4>
+                    <p class="text-gray-600">دمياط - خلف مول الصفوة</p>
+                    <p class="text-gray-500 text-sm">الساحة الشعبية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                        أكاديمية متخصصة في تدريب السباحة لجميع الأعمار والمستويات. نقدم بيئة آمنة وممتعة لتعلم السباحة بأيدي خبراء معتمدين.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/80 hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="#about" class="text-white/80 hover:text-white transition-colors">من نحن</a></li>
+                        <li><a href="#features" class="text-white/80 hover:text-white transition-colors">مميزاتنا</a></li>
+                        <li><a href="#gallery" class="text-white/80 hover:text-white transition-colors">المعرض</a></li>
+                        <li><a href="#booking" class="text-white/80 hover:text-white transition-colors">الحجز</a></li>
+                        <li><a href="#contact" class="text-white/80 hover:text-white transition-colors">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6">تابعنا على</h4>
+                    <div class="flex gap-4 mb-6">
+                        <a href="https://www.facebook.com/aquaplus.sic" target="_blank" class="social-link" aria-label="فيسبوك">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/aquaplus.sic/" target="_blank" class="social-link" aria-label="انستجرام">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/201551077100" target="_blank" class="social-link" aria-label="واتساب">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div>
+                        <p class="text-white/60 text-sm">العنوان</p>
+                        <p class="text-white font-medium">دمياط - خلف مول الصفوة - الساحة الشعبية</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-white/60 text-sm">رقم الهاتف</p>
+                        <p class="text-white font-semibold" dir="rtl">01551077100</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60">
+                    جميع الحقوق محفوظة &copy; <span id="year"></span> Aqua Plus للخدمات الرياضية
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/201551077100" target="_blank" class="whatsapp-float" aria-label="تواصل عبر واتساب">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+    
+    <script>
+        // Initialize all variables first
+        const navbar = document.getElementById('navbar');
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const revealElements = document.querySelectorAll('.reveal');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const promoVideo = document.getElementById('promoVideo');
+        
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        if (menuBtn && mobileMenu && closeMenuBtn) {
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+            });
+            
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+            });
+        }
+        
+        // Close mobile menu on link click
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+        });
+        
+        // Scroll reveal with IntersectionObserver
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        
+        revealElements.forEach(function(el) {
+            revealObserver.observe(el);
+        });
+        
+        // Animate stats numbers
+        function animateNumbers() {
+            statNumbers.forEach(function(stat) {
+                const target = parseInt(stat.dataset.target);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                function updateNumber() {
+                    current += step;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current);
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        stat.textContent = target;
+                    }
+                }
+                
+                updateNumber();
+            });
+        }
+        
+        // Observe stats section
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (statNumbers.length > 0) {
+            statsObserver.observe(statNumbers[0].closest('.grid'));
+        }
+        
+        // Video placeholder click handler
+        if (videoPlaceholder && promoVideo) {
+            videoPlaceholder.addEventListener('click', function() {
+                videoPlaceholder.classList.add('hidden');
+                promoVideo.classList.remove('hidden');
+                promoVideo.play();
+            });
+        }
+        
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(function(section) {
+                const sectionTop = section.offsetTop;
+                
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Respect reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            document.querySelectorAll('.bubble').forEach(function(bubble) {
+                bubble.style.animation = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
